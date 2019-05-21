@@ -10,28 +10,21 @@ use yii\widgets\ActiveForm;
 
 <div class="category-data-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <div class="col-md-12">
+        <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'language_code')->textInput(['maxlength' => true]) ?>
+        <?php if ($form->hasProperty('slug')): ?>
+            <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+        <?php endif; ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <div class="form-group">
+            <?= Html::submitButton(Yii::t('shop/category-data', 'Save'), ['class' => 'btn btn-success']) ?>
+        </div>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('shop/category-data', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?php ActiveForm::end(); ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
 
 </div>

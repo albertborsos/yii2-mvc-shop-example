@@ -38,15 +38,23 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Shop', 'url' => ['/shop/default/index']],
+            ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
+            ['label' => Yii::t('app', 'Products'), 'url' => ['/shop/default/index']],
+            [
+                'label' => Yii::t('app', 'Manage'),
+                'items' => [
+                    ['label' => Yii::t('app', 'Categories'), 'url' => ['/shop/category/index']],
+                    ['label' => Yii::t('app', 'Products'), 'url' => ['/shop/product/index']],
+                ],
+                'visible' => Yii::$app->user->identity->username === 'admin',
+            ],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    Html::img('https://connect2.mito.hu/profile-pictures/e17568738fbeffb1ad309ef83e7c34e438336425.jpg', ['class' => 'img-circle', 'style' => 'height:18px;']) . ' Logout (' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()

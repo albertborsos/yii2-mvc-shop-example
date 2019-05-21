@@ -3,6 +3,7 @@
 return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'shop'],
+    'name' => 'Shop',
     'language' => 'en',
     'sourceLanguage' => 'en',
     'aliases' => [

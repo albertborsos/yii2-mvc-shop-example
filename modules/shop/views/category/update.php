@@ -16,8 +16,18 @@ $this->params['breadcrumbs'][] = Yii::t('shop/category', 'Update');
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+        <div class="col-md-6">
+            <?= \yii\bootstrap\Tabs::widget([
+                'items' => \app\modules\shop\domains\category\CategoryData::updateTabItems($this, $form),
+            ]) ?>
+        </div>
+    </div>
+
 
 </div>

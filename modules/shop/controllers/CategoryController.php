@@ -2,6 +2,13 @@
 
 namespace app\modules\shop\controllers;
 
+use app\models\Language;
+use app\modules\shop\domains\category\CategoryData;
+use app\modules\shop\services\category\CreateCategoryService;
+use app\modules\shop\services\category\forms\CreateCategoryForm;
+use app\modules\shop\services\category\forms\UpdateCategoryForm;
+use app\modules\shop\services\category\CreateOrUpdateCategoryService;
+use app\modules\shop\services\category\UpdateCategoryService;
 use Yii;
 use app\modules\shop\domains\category\Category;
 use app\modules\shop\domains\category\CategorySearch;
@@ -64,14 +71,17 @@ class CategoryController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Category();
+        $form = new CreateCategoryForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $service = new CreateCategoryService($form);
+            if ($id = $service->execute()) {
+                return $this->redirect(['update', 'id' => $id]);
+            }
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 
@@ -81,17 +91,35 @@ class CategoryController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \yii\base\InvalidConfigException
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $languageCode = null)
     {
-        $model = $this->findModel($id);
+        $languageCodes = array_keys(Language::allowed());
+        $languageCode = $languageCode ?? array_shift($languageCodes);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = $this->findModel($id);
+        $form = new UpdateCategoryForm($model);
+
+        $dataForm = CategoryData::getForm($model, $languageCode);
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $service = new UpdateCategoryService($form, $model);
+            if ($service->execute()) {
+                return $this->redirect(['update', 'id' => $form->id]);
+            }
+        }
+
+        if ($dataForm->load(Yii::$app->request->post()) && $dataForm->validate()) {
+            $service = new CreateOrUpdateCategoryService($dataForm, $model->getCategoryDatas()->andWhere(['language_code' => $languageCode])->one());
+            if ($id = $service->execute()) {
+                return $this->redirect(['update', 'id' => $id, 'languageCode' => $dataForm->language_code]);
+            }
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'model' => $form,
+            'form' =>$dataForm,
         ]);
     }
 
