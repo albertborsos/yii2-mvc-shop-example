@@ -7,7 +7,7 @@ use app\modules\shop\domains\category\CategoryData;
 use app\modules\shop\services\category\CreateCategoryService;
 use app\modules\shop\services\category\forms\CreateCategoryForm;
 use app\modules\shop\services\category\forms\UpdateCategoryForm;
-use app\modules\shop\services\category\CreateOrUpdateCategoryService;
+use app\modules\shop\services\category\CreateOrUpdateCategoryDataService;
 use app\modules\shop\services\category\UpdateCategoryService;
 use Yii;
 use app\modules\shop\domains\category\Category;
@@ -111,7 +111,7 @@ class CategoryController extends Controller
         }
 
         if ($dataForm->load(Yii::$app->request->post()) && $dataForm->validate()) {
-            $service = new CreateOrUpdateCategoryService($dataForm, $model->getCategoryDatas()->andWhere(['language_code' => $languageCode])->one());
+            $service = new CreateOrUpdateCategoryDataService($dataForm, $model->getCategoryDatas()->andWhere(['language_code' => $languageCode])->one());
             if ($dataId = $service->execute()) {
                 return $this->redirect(['update', 'id' => $id, 'languageCode' => $dataForm->language_code]);
             }

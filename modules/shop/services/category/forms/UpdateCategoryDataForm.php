@@ -35,8 +35,8 @@ class UpdateCategoryDataForm extends Model
 
             [['slug'], 'match', 'pattern' => '/^[a-z0-9-]+$/'],
 
-            [['name'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'name', 'filter' => ['NOT', ['id' => $this->id, 'language_code' => $this->language_code]]],
-            [['slug'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'slug', 'filter' => ['NOT', ['id' => $this->id, 'language_code' => $this->language_code]]],
+            [['name'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'name', 'filter' => ['AND', ['language_code' => $this->language_code], ['NOT', ['id' => $this->id]]]],
+            [['slug'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'slug', 'filter' => ['AND', ['language_code' => $this->language_code], ['NOT', ['id' => $this->id]]]],
         ];
     }
 }

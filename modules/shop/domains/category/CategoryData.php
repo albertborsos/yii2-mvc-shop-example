@@ -27,7 +27,11 @@ class CategoryData extends AbstractCategoryData
                 'class' => SluggableBehavior::class,
                 'attribute' => 'name',
                 'ensureUnique' => true,
-                'uniqueValidator' => ['filter' => ['NOT', ['language_code' => $this->language_code]]],
+                'uniqueValidator' => [
+                    'filter' => $this->isNewRecord
+                        ? ['language_code' => $this->language_code]
+                        : ['AND', ['language_code' => $this->language_code], ['NOT', ['id' => $this->id]]],
+                ],
             ],
         ];
     }

@@ -12,7 +12,7 @@ use app\modules\shop\services\category\forms\CreateCategoryForm;
  * @property CreateCategoryForm $form
  * @property CategoryData $model
  */
-class CreateOrUpdateCategoryService extends Service
+class CreateOrUpdateCategoryDataService extends Service
 {
     public function execute()
     {

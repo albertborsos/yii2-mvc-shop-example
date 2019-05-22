@@ -50,7 +50,7 @@ class m190520_141826_create_initial_tables extends Migration
             'id' => $this->primaryKey(),
             'category_id' => $this->integer(),
             'name' => $this->string()->notNull(),
-            'price' => $this->integer()->notNull(),
+            'price' => $this->decimal()->notNull(),
             'created_at' => $this->bigInteger(),
             'created_by' => $this->integer(),
             'updated_at' => $this->bigInteger(),

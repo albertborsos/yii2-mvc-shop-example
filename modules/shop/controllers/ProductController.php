@@ -2,6 +2,11 @@
 
 namespace app\modules\shop\controllers;
 
+use app\models\Language;
+use app\modules\shop\domains\product\ProductData;
+use app\modules\shop\services\product\CreateOrUpdateProductDataService;
+use app\modules\shop\services\product\forms\UpdateProductForm;
+use app\modules\shop\services\product\UpdateProductService;
 use Yii;
 use app\modules\shop\domains\product\Product;
 use app\modules\shop\domains\product\ProductSearch;
@@ -82,16 +87,33 @@ class ProductController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $languageCode = null)
     {
-        $model = $this->findModel($id);
+        $languageCodes = array_keys(Language::allowed());
+        $languageCode = $languageCode ?? array_shift($languageCodes);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = $this->findModel($id);
+        $form = new UpdateProductForm($model);
+
+        $dataForm = ProductData::getForm($model, $languageCode);
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $service = new UpdateProductService($form, $model);
+            if ($service->execute()) {
+                return $this->redirect(['update', 'id' => $form->id]);
+            }
+        }
+
+        if ($dataForm->load(Yii::$app->request->post()) && $dataForm->validate()) {
+            $service = new CreateOrUpdateProductDataService($dataForm, $model->getProductDatas()->andWhere(['language_code' => $languageCode])->one());
+            if ($dataId = $service->execute()) {
+                return $this->redirect(['update', 'id' => $id, 'languageCode' => $dataForm->language_code]);
+            }
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'model' => $form,
+            'form' => $dataForm,
         ]);
     }
 

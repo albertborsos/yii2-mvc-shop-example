@@ -46,7 +46,7 @@ AppAsset::register($this);
                     ['label' => Yii::t('app', 'Categories'), 'url' => ['/shop/category/index']],
                     ['label' => Yii::t('app', 'Products'), 'url' => ['/shop/product/index']],
                 ],
-                'visible' => Yii::$app->user->identity->username === 'admin',
+                'visible' => \yii\helpers\ArrayHelper::getValue(Yii::$app->user, 'identity.username') === 'admin',
             ],
             Yii::$app->user->isGuest ? (
                 ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]

@@ -14,14 +14,18 @@ $this->params['breadcrumbs'][] = Yii::t('shop/product', 'Update');
 ?>
 <div class="product-update">
 
+    <h1><?= Html::encode($this->title) ?></h1>
+
     <div class="row">
         <div class="col-md-6">
-            <h1><?= Html::encode($this->title) ?></h1>
-
             <?= $this->render('_form', [
                 'model' => $model,
             ]) ?>
-
+        </div>
+        <div class="col-md-6">
+            <?= \yii\bootstrap\Tabs::widget([
+                'items' => \app\modules\shop\domains\product\ProductData::updateTabItems($this, $form),
+            ]) ?>
         </div>
     </div>
 

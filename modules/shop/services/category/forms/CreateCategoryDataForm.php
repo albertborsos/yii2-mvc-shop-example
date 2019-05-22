@@ -30,7 +30,7 @@ class CreateCategoryDataForm extends Model
             [['name'], 'string'],
             [['name'], 'required'],
 
-            [['name'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'name', 'filter' => ['NOT', ['language_code' => $this->language_code]]],
+            [['name'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'name', 'filter' => ['language_code' => $this->language_code]],
         ];
     }
 }

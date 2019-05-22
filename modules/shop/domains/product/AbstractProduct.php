@@ -36,8 +36,9 @@ abstract class AbstractProduct extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'price', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['category_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['name', 'price'], 'required'],
+            [['price'], 'number'],
             [['name'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
