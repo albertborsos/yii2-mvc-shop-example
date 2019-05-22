@@ -18,8 +18,8 @@ use Yii;
  *
  * @property Category $parentCategory
  * @property Category[] $categories
- * @property CategoryData[] $shopCategoryDatas
- * @property Product[] $shopProducts
+ * @property CategoryData[] $categoryDatas
+ * @property Product[] $products
  */
 abstract class AbstractCategory extends \yii\db\ActiveRecord
 {

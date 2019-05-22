@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
-            ['label' => Yii::t('app', 'Products'), 'url' => ['/shop/default/index']],
+            \app\modules\shop\helpers\NavbarHelper::productsMenuItems(),
             [
                 'label' => Yii::t('app', 'Manage'),
                 'items' => [

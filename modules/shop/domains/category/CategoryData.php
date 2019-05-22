@@ -78,4 +78,9 @@ class CategoryData extends AbstractCategoryData
 
         return $items;
     }
+
+    public function getUrl()
+    {
+        return ['/shop/' . $this->slug];
+    }
 }

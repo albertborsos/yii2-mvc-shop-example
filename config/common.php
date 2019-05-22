@@ -50,6 +50,9 @@ return [
                 // use temporary redirection instead of permanent for debugging
                 'action' => \yii\web\UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
             ],
+            'rules' => [
+                'shop/<slug:[a-zA-Z0-9-]+>' => 'shop/default/index',
+            ],
         ],
         'i18n' => [
             'class' => \yii\i18n\I18N::class,

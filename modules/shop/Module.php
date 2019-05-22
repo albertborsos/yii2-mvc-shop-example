@@ -2,6 +2,7 @@
 
 namespace app\modules\shop;
 
+use app\modules\shop\assets\ProductAssets;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 
@@ -13,6 +14,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
         if (\Yii::$app instanceof \yii\console\Application) {
             $this->controllerNamespace = 'app\modules\conduit\commands';
         }
+        $this->registerAssets();
     }
 
     /**
@@ -22,5 +24,14 @@ class Module extends \yii\base\Module implements BootstrapInterface
     public function bootstrap($app)
     {
         Bootstrap::setConfig($app);
+    }
+
+    private function registerAssets()
+    {
+        if (!\Yii::$app instanceof \yii\web\Application) {
+            return;
+        }
+
+        ProductAssets::register(\Yii::$app->view);
     }
 }
