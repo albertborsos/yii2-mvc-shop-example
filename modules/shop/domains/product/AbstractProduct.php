@@ -11,6 +11,7 @@ use Yii;
  * @property int $id
  * @property int $category_id
  * @property string $name
+ * @property int $price
  * @property int $created_at
  * @property int $created_by
  * @property int $updated_at
@@ -35,8 +36,8 @@ abstract class AbstractProduct extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['name'], 'required'],
+            [['category_id', 'price', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['name', 'price'], 'required'],
             [['name'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -51,6 +52,7 @@ abstract class AbstractProduct extends \yii\db\ActiveRecord
             'id' => Yii::t('shop/product', 'ID'),
             'category_id' => Yii::t('shop/product', 'Category ID'),
             'name' => Yii::t('shop/product', 'Name'),
+            'price' => Yii::t('shop/product', 'Price'),
             'created_at' => Yii::t('shop/product', 'Created At'),
             'created_by' => Yii::t('shop/product', 'Created By'),
             'updated_at' => Yii::t('shop/product', 'Updated At'),
