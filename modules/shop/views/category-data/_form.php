@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <?php if ($form->hasProperty('slug')): ?>
+        <?php if ($model->hasProperty('slug')): ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
         <?php endif; ?>
 

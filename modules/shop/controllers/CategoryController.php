@@ -112,7 +112,7 @@ class CategoryController extends Controller
 
         if ($dataForm->load(Yii::$app->request->post()) && $dataForm->validate()) {
             $service = new CreateOrUpdateCategoryService($dataForm, $model->getCategoryDatas()->andWhere(['language_code' => $languageCode])->one());
-            if ($id = $service->execute()) {
+            if ($dataId = $service->execute()) {
                 return $this->redirect(['update', 'id' => $id, 'languageCode' => $dataForm->language_code]);
             }
         }

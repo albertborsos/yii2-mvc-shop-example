@@ -21,6 +21,7 @@ class UpdateCategoryDataForm extends Model
         $this->language_code = $languageCode;
         $this->name = $model->name;
         $this->slug = $model->slug;
+        $this->id = $model->id;
     }
 
     public function rules()
@@ -32,8 +33,10 @@ class UpdateCategoryDataForm extends Model
             [['name', 'slug'], 'string'],
             [['name', 'slug'], 'required'],
 
-            [['name'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'name'],
-            [['slug'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'slug'],
+            [['slug'], 'match', 'pattern' => '/^[a-z0-9-]+$/'],
+
+            [['name'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'name', 'filter' => ['NOT', ['id' => $this->id]]],
+            [['slug'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'slug', 'filter' => ['NOT', ['id' => $this->id]]],
         ];
     }
 }

@@ -30,9 +30,7 @@ class UpdateCategoryForm extends Model
 
             [['name'], 'string'],
             [['name'], 'required'],
-            [['name'], 'unique', 'targetClass' => Category::class, 'targetAttribute' => 'name', 'filter' => function ($query) {
-                return $query->andWhere(['NOT', ['id' => $this->model->id]]);
-            }],
+            [['name'], 'unique', 'targetClass' => Category::class, 'targetAttribute' => 'name', 'filter' => ['NOT', ['id' => $this->model->id]]],
         ];
     }
 }
