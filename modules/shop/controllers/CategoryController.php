@@ -90,8 +90,10 @@ class CategoryController extends Controller
      * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
+     * @param null $languageCode
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \yii\base\Exception
      * @throws \yii\base\InvalidConfigException
      */
     public function actionUpdate($id, $languageCode = null)
@@ -112,7 +114,7 @@ class CategoryController extends Controller
         }
 
         if ($dataForm->load(Yii::$app->request->post()) && $dataForm->validate()) {
-            $service = new CreateOrUpdateCategoryDataService($dataForm, $model->getCategoryDatas()->andWhere(['language_code' => $languageCode])->one());
+            $service = new CreateOrUpdateCategoryDataService($dataForm, $model->data($languageCode, false));
             if ($dataId = $service->execute()) {
                 return $this->redirect(['update', 'id' => $id, 'languageCode' => $dataForm->language_code]);
             }

@@ -15,11 +15,11 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'description')->textarea() ?>
-
         <?php if ($model->hasProperty('slug')): ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
         <?php endif; ?>
+
+        <?= $form->field($model, 'description')->textarea() ?>
 
         <div class="form-group">
             <?= Html::submitButton(Yii::t('shop/category-data', 'Save'), ['class' => 'btn btn-success']) ?>

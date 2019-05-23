@@ -105,7 +105,7 @@ class ProductController extends Controller
         }
 
         if ($dataForm->load(Yii::$app->request->post()) && $dataForm->validate()) {
-            $service = new CreateOrUpdateProductDataService($dataForm, $model->getProductDatas()->andWhere(['language_code' => $languageCode])->one());
+            $service = new CreateOrUpdateProductDataService($dataForm, $model->data($languageCode, false));
             if ($dataId = $service->execute()) {
                 return $this->redirect(['update', 'id' => $id, 'languageCode' => $dataForm->language_code]);
             }

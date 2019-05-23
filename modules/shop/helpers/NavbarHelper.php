@@ -13,9 +13,13 @@ class NavbarHelper
         $items = [];
 
         foreach (Category::find()->orderBy(['name' => SORT_ASC])->all() as $category) {
+            $data = $category->data(Yii::$app->language, false);
+            if (empty($data)) {
+                continue;
+            }
             $items[] = [
-                'label' => $category->data(Yii::$app->language)->name,
-                'url' => $category->data(Yii::$app->language)->getUrl(),
+                'label' => $data->name,
+                'url' => $data->getUrl(),
             ];
         }
 
