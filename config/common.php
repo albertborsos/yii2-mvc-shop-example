@@ -51,7 +51,8 @@ return [
                 'action' => \yii\web\UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
             ],
             'rules' => [
-                'shop/<slug:[a-zA-Z0-9-]+>' => 'shop/default/index',
+                '/' => '/shop/default/home',
+                '/shop/<slug:[a-zA-Z0-9-]+>' => 'shop/default/index',
             ],
         ],
         'i18n' => [
