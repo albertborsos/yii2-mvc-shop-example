@@ -12,6 +12,7 @@ class CreateCategoryDataForm extends Model
     public $category_id;
     public $language_code;
     public $name;
+    public $description;
 
     public function __construct(Category $model, $languageCode, array $config = [])
     {
@@ -24,13 +25,16 @@ class CreateCategoryDataForm extends Model
     public function rules()
     {
         return [
-            [['name'], HtmlPurifierFilter::class],
-            [['name'], 'trim'],
-            [['name'], 'default'],
-            [['name'], 'string'],
+            [['name', 'description'], HtmlPurifierFilter::class],
+            [['name', 'description'], 'trim'],
+            [['name', 'description'], 'default'],
+
             [['name'], 'required'],
 
+            [['name'], 'string', 'max' => 255],
             [['name'], 'unique', 'targetClass' => CategoryData::class, 'targetAttribute' => 'name', 'filter' => ['language_code' => $this->language_code]],
+
+            [['description'], 'string'],
         ];
     }
 }

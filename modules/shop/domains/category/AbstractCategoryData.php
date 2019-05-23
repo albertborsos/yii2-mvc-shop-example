@@ -11,6 +11,7 @@ use Yii;
  * @property int $category_id
  * @property string $language_code
  * @property string $name
+ * @property string $description
  * @property string $slug
  * @property int $created_at
  * @property int $created_by
@@ -39,6 +40,7 @@ abstract class AbstractCategoryData extends \yii\db\ActiveRecord
             [['category_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['language_code'], 'string', 'max' => 2],
             [['name', 'slug'], 'string', 'max' => 255],
+            [['description'], 'string'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -53,6 +55,7 @@ abstract class AbstractCategoryData extends \yii\db\ActiveRecord
             'category_id' => Yii::t('shop/category-data', 'Category ID'),
             'language_code' => Yii::t('shop/category-data', 'Language Code'),
             'name' => Yii::t('shop/category-data', 'Name'),
+            'description' => Yii::t('shop/category-data', 'Description'),
             'slug' => Yii::t('shop/category-data', 'Slug'),
             'created_at' => Yii::t('shop/category-data', 'Created At'),
             'created_by' => Yii::t('shop/category-data', 'Created By'),

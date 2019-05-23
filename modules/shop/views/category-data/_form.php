@@ -15,6 +15,8 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+        <?= $form->field($model, 'description')->textarea() ?>
+
         <?php if ($model->hasProperty('slug')): ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
         <?php endif; ?>

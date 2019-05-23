@@ -11,6 +11,7 @@ use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\web\View;
 
+
 class CategoryData extends AbstractCategoryData
 {
     const MAP_FORMS = [

@@ -12,6 +12,7 @@ use app\modules\shop\services\category\UpdateCategoryService;
 use Yii;
 use app\modules\shop\domains\category\Category;
 use app\modules\shop\domains\category\CategorySearch;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -105,8 +106,8 @@ class CategoryController extends Controller
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $service = new UpdateCategoryService($form, $model);
-            if ($service->execute()) {
-                return $this->redirect(['update', 'id' => $form->id]);
+            if ($id = $service->execute()) {
+                return $this->redirect(['update', 'id' => $id]);
             }
         }
 

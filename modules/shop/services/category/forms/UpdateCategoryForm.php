@@ -30,6 +30,7 @@ class UpdateCategoryForm extends Model
 
             [['name'], 'string'],
             [['name'], 'required'],
+
             [['name'], 'unique', 'targetClass' => Category::class, 'targetAttribute' => 'name', 'filter' => ['NOT', ['id' => $this->model->id]]],
         ];
     }

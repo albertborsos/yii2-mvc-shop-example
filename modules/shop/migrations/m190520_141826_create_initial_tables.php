@@ -13,7 +13,6 @@ class m190520_141826_create_initial_tables extends Migration
     const SHOP_PRODUCT = '{{%shop_product}}';
     const SHOP_PRODUCT_DATA = '{{%shop_product_data}}';
 
-    const FK_CATEGORY_PARENT_CATEGORY_ID_CATEGORY_ID = 'fk_category__parent_category_id__category_id';
     const FK_CATEGORY_DATA_CATEGORY_ID_CATEGORY_ID = 'fk_category_data__category_id__category_id';
     const FK_PRODUCT_CATEGORY_ID_CATEGORY_ID = 'fk_product__category_id__category_id';
     const FK_PRODUCT_DATA_PRODUCT_ID_PRODUCT_ID = 'fk_product_data__product_id__product_id';
@@ -22,7 +21,6 @@ class m190520_141826_create_initial_tables extends Migration
     {
         $this->createTable(self::SHOP_CATEGORY, [
             'id' => $this->primaryKey(),
-            'parent_category_id' => $this->integer(),
             'name' => $this->string()->notNull(),
             'created_at' => $this->bigInteger(),
             'created_by' => $this->integer(),
@@ -30,13 +28,12 @@ class m190520_141826_create_initial_tables extends Migration
             'updated_by' => $this->integer(),
         ]);
 
-        $this->addForeignKey(self::FK_CATEGORY_PARENT_CATEGORY_ID_CATEGORY_ID, self::SHOP_CATEGORY, 'parent_category_id', self::SHOP_CATEGORY, 'id');
-
         $this->createTable(self::SHOP_CATEGORY_DATA, [
             'id' => $this->primaryKey(),
             'category_id' => $this->integer()->notNull(),
             'language_code' => $this->string(2)->notNull(),
             'name' => $this->string()->notNull(),
+            'description' => $this->text(),
             'slug' => $this->string()->notNull(),
             'created_at' => $this->bigInteger(),
             'created_by' => $this->integer(),
@@ -89,7 +86,6 @@ class m190520_141826_create_initial_tables extends Migration
         $this->dropForeignKey(self::FK_CATEGORY_DATA_CATEGORY_ID_CATEGORY_ID, self::SHOP_CATEGORY_DATA);
         $this->dropTable(self::SHOP_CATEGORY_DATA);
 
-        $this->dropForeignKey(self::FK_CATEGORY_PARENT_CATEGORY_ID_CATEGORY_ID, self::SHOP_CATEGORY);
         $this->dropTable(self::SHOP_CATEGORY);
     }
 }
