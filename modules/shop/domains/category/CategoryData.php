@@ -14,6 +14,8 @@ use yii\web\View;
 
 class CategoryData extends AbstractCategoryData
 {
+    use CategoryDataAttributeLabelsTrait;
+
     const MAP_FORMS = [
         'create' => CreateCategoryDataForm::class,
         'update' => UpdateCategoryDataForm::class,

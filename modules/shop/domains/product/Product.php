@@ -8,6 +8,8 @@ use yii\behaviors\TimestampBehavior;
 
 class Product extends AbstractProduct
 {
+    use ProductAttributeLabelsTrait;
+
     public function behaviors()
     {
         return [

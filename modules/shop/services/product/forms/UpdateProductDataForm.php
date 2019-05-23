@@ -4,10 +4,13 @@ namespace app\modules\shop\services\product\forms;
 
 use app\modules\shop\components\validators\HtmlPurifierFilter;
 use app\modules\shop\domains\product\ProductData;
+use app\modules\shop\domains\product\ProductDataAttributeLabelsTrait;
 use yii\base\Model;
 
 class UpdateProductDataForm extends Model
 {
+    use ProductDataAttributeLabelsTrait;
+
     public $id;
     public $product_id;
     public $language_code;

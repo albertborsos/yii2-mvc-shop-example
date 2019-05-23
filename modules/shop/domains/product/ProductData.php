@@ -10,11 +10,12 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\Url;
-use yii\helpers\VarDumper;
 use yii\web\View;
 
 class ProductData extends AbstractProductData
 {
+    use ProductDataAttributeLabelsTrait;
+
     const MAP_FORMS = [
         'create' => CreateProductDataForm::class,
         'update' => UpdateProductDataForm::class,

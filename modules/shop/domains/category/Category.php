@@ -9,6 +9,8 @@ use yii\helpers\ArrayHelper;
 
 class Category extends AbstractCategory
 {
+    use CategoryAttributeLabelsTrait;
+
     public function behaviors()
     {
         return [

@@ -4,11 +4,14 @@ namespace app\modules\shop\services\product\forms;
 
 use app\modules\shop\components\validators\HtmlPurifierFilter;
 use app\modules\shop\domains\category\Category;
+use app\modules\shop\domains\product\ProductAttributeLabelsTrait;
 use app\modules\shop\domains\product\Product;
 use yii\base\Model;
 
 class CreateProductForm extends Model
 {
+    use ProductAttributeLabelsTrait;
+
     public $category_id;
     public $name;
     public $price;

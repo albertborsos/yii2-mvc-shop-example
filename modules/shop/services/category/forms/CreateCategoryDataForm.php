@@ -5,10 +5,13 @@ namespace app\modules\shop\services\category\forms;
 use app\modules\shop\components\validators\HtmlPurifierFilter;
 use app\modules\shop\domains\category\Category;
 use app\modules\shop\domains\category\CategoryData;
+use app\modules\shop\domains\category\CategoryDataAttributeLabelsTrait;
 use yii\base\Model;
 
 class CreateCategoryDataForm extends Model
 {
+    use CategoryDataAttributeLabelsTrait;
+
     public $category_id;
     public $language_code;
     public $name;

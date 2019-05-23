@@ -3,11 +3,14 @@
 namespace app\modules\shop\services\category\forms;
 
 use app\modules\shop\components\validators\HtmlPurifierFilter;
+use app\modules\shop\domains\category\CategoryAttributeLabelsTrait;
 use app\modules\shop\domains\category\Category;
 use yii\base\Model;
 
 class CreateCategoryForm extends Model
 {
+    use CategoryAttributeLabelsTrait;
+
     public $name;
 
     public function rules()

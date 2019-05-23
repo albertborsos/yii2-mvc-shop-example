@@ -5,10 +5,13 @@ namespace app\modules\shop\services\product\forms;
 use app\modules\shop\components\validators\HtmlPurifierFilter;
 use app\modules\shop\domains\product\Product;
 use app\modules\shop\domains\product\ProductData;
+use app\modules\shop\domains\product\ProductDataAttributeLabelsTrait;
 use yii\base\Model;
 
 class CreateProductDataForm extends Model
 {
+    use ProductDataAttributeLabelsTrait;
+
     public $product_id;
     public $language_code;
     public $name;

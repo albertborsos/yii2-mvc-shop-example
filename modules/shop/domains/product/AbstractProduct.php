@@ -45,23 +45,6 @@ abstract class AbstractProduct extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('shop/product', 'ID'),
-            'category_id' => Yii::t('shop/product', 'Category ID'),
-            'name' => Yii::t('shop/product', 'Name'),
-            'price' => Yii::t('shop/product', 'Price'),
-            'created_at' => Yii::t('shop/product', 'Created At'),
-            'created_by' => Yii::t('shop/product', 'Created By'),
-            'updated_at' => Yii::t('shop/product', 'Updated At'),
-            'updated_by' => Yii::t('shop/product', 'Updated By'),
-        ];
-    }
-
-    /**
      * @return \yii\db\ActiveQuery
      */
     public function getCategory()

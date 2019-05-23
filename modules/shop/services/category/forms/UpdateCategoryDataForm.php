@@ -4,10 +4,13 @@ namespace app\modules\shop\services\category\forms;
 
 use app\modules\shop\components\validators\HtmlPurifierFilter;
 use app\modules\shop\domains\category\CategoryData;
+use app\modules\shop\domains\category\CategoryDataAttributeLabelsTrait;
 use yii\base\Model;
 
 class UpdateCategoryDataForm extends Model
 {
+    use CategoryDataAttributeLabelsTrait;
+
     public $id;
     public $category_id;
     public $language_code;
