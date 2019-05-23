@@ -25,4 +25,5 @@ return [
     'Login' => 'Bejelentkezés',
     'Manage' => 'Kezelés',
     'Products' => 'Termékek',
+    'Logout ({username})' => 'Kijelentkezés ({username})',
 ];

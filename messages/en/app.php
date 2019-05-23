@@ -23,6 +23,7 @@ return [
     'Hungarian' => '',
     'Latest Products' => '',
     'Login' => '',
+    'Logout ({username})' => '',
     'Manage' => '',
     'Products' => '',
     'Invalid password' => '@@@@',

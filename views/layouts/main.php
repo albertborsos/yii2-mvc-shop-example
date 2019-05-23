@@ -54,7 +54,9 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    Html::img('https://connect2.mito.hu/profile-pictures/e17568738fbeffb1ad309ef83e7c34e438336425.jpg', ['class' => 'img-circle', 'style' => 'height:18px;']) . ' Logout (' . Yii::$app->user->identity->username . ')',
+                    Html::img('https://connect2.mito.hu/profile-pictures/e17568738fbeffb1ad309ef83e7c34e438336425.jpg', ['class' => 'img-circle', 'style' => 'height:18px;']) . ' ' . Yii::t('app', 'Logout ({username})', [
+                        'username' => Yii::$app->user->identity->username,
+                    ]),
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
