@@ -17,14 +17,22 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Body' => '',
+    'Are you sure you want to delete this item?' => '',
+    'Category ID' => 'Kategória',
+    'Create Product' => 'Új Termék',
     'Created At' => '',
     'Created By' => '',
-    'Description' => '',
+    'Delete' => 'Törlés',
     'ID' => '',
-    'Slug' => '',
-    'Title' => '',
+    'Name' => 'Név',
+    'Price' => 'Ár',
+    'Products' => 'Termékek',
+    'Reset' => 'Mégsem',
+    'Save' => 'Mentés',
+    'Search' => 'Keresés',
+    'The requested page does not exist.' => '',
+    'Update' => 'Módosítás',
+    'Update Product: {name}' => 'Termék módosítása: {name}',
     'Updated At' => '',
     'Updated By' => '',
-    'User ID' => '',
 ];

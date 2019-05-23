@@ -17,13 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Categories' => '',
-    'English' => '',
-    'Home' => '',
-    'Hungarian' => '',
-    'Latest Products' => '',
-    'Login' => '',
-    'Manage' => '',
-    'Products' => '',
-    'Invalid password' => '@@@@',
+    'Categories' => 'Kategóriák',
+    'English' => 'Angol',
+    'Home' => 'Kezdőlap',
+    'Hungarian' => 'Magyar',
+    'Latest Products' => 'Legújabb Termékek',
+    'Login' => 'Bejelentkezés',
+    'Manage' => 'Kezelés',
+    'Products' => 'Termékek',
 ];

@@ -59,7 +59,8 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+            ),
+            \app\modules\shop\helpers\NavbarHelper::languageSelector(),
         ],
     ]);
     NavBar::end();

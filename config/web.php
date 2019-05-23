@@ -4,6 +4,9 @@ $common = require __DIR__ . '/common.php';
 
 $config = [
     'id' => 'basic',
+    'bootstrap' =>[
+        \app\components\LanguageSelector::class,
+    ],
     'components' => [
         'request' => [
             'cookieValidationKey' => 'rXVaWYxMOJyzDm8xNAyotFsGxZDT5WEk',

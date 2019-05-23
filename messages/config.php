@@ -15,7 +15,7 @@ return [
     'help' => null,
     'sourcePath' => '@app',
     'messagePath' => '@app/messages',
-    'languages' => ['en'],
+    'languages' => ['en', 'hu'],
     'translator' => 'Yii::t',
     'sort' => false,
     'overwrite' => true,

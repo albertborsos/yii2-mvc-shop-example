@@ -17,13 +17,20 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Are you sure you want to delete this item?' => '',
     'Categories' => '',
-    'English' => '',
-    'Home' => '',
-    'Hungarian' => '',
-    'Latest Products' => '',
-    'Login' => '',
-    'Manage' => '',
-    'Products' => '',
-    'Invalid password' => '@@@@',
+    'Create Category' => '',
+    'Created At' => '',
+    'Created By' => '',
+    'Delete' => '',
+    'ID' => '',
+    'Name' => '',
+    'Reset' => '',
+    'Save' => '',
+    'Search' => '',
+    'The requested page does not exist.' => '',
+    'Update' => '',
+    'Update Category: {name}' => '',
+    'Updated At' => '',
+    'Updated By' => '',
 ];

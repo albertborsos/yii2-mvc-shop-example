@@ -2,9 +2,12 @@
 
 namespace app\modules\shop\helpers;
 
+use app\components\LanguageSelector;
 use app\modules\shop\domains\category\Category;
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 class NavbarHelper
 {
@@ -31,6 +34,24 @@ class NavbarHelper
         return [
             'label' => Yii::t('app', 'Products'),
             'items' => $items,
+        ];
+    }
+
+    public static function languageSelector()
+    {
+        $items = [];
+
+        foreach (LanguageSelector::allowed() as $languageCode => $languageName) {
+            $items[] = [
+                'label' => $languageName,
+                'url' => Url::current(['language' => $languageCode]),
+            ];
+        }
+
+        return [
+            'label' => \yii\bootstrap\Html::icon('globe'),
+            'items' => $items,
+            'encode' => false,
         ];
     }
 }
