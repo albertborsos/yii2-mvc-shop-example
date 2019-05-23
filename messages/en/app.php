@@ -18,6 +18,7 @@
  */
 return [
     'Categories' => '',
+    'Choose..' => '',
     'English' => '',
     'Home' => '',
     'Hungarian' => '',

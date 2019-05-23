@@ -6,9 +6,16 @@ use app\modules\shop\components\Service;
 
 class UpdateProductService extends Service
 {
-
     public function execute()
     {
-        // TODO: Implement execute() method.
+        $this->model->setAttributes($this->form->attributes);
+
+        if ($this->model->save()) {
+            return $this->model->id;
+        }
+
+        $this->form->addErrors($this->model->getErrors());
+
+        return false;
     }
 }

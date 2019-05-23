@@ -36,7 +36,7 @@ class UpdateProductForm extends Model
 
             [['category_id'], 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'id'],
 
-            [['name'], 'unique', 'targetClass' => Product::class, 'targetAttribute' => 'name'],
+            [['name'], 'unique', 'targetClass' => Product::class, 'targetAttribute' => 'name', 'filter' => ['NOT', ['id' => $this->id]]],
 
             [['price'], 'number', 'min' => 0],
         ];

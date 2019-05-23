@@ -54,7 +54,7 @@ class m190520_141826_create_initial_tables extends Migration
             'updated_by' => $this->integer(),
         ]);
 
-        $this->addForeignKey(self::FK_PRODUCT_CATEGORY_ID_CATEGORY_ID, self::SHOP_PRODUCT, 'category_id', self::SHOP_CATEGORY, 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey(self::FK_PRODUCT_CATEGORY_ID_CATEGORY_ID, self::SHOP_PRODUCT, 'category_id', self::SHOP_CATEGORY, 'id', 'SET NULL', 'CASCADE');
 
         $this->createTable(self::SHOP_PRODUCT_DATA, [
             'id' => $this->primaryKey(),

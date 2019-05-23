@@ -23,7 +23,8 @@ return [
     'Hungarian' => 'Magyar',
     'Latest Products' => 'Legújabb Termékek',
     'Login' => 'Bejelentkezés',
+    'Logout ({username})' => 'Kijelentkezés ({username})',
     'Manage' => 'Kezelés',
     'Products' => 'Termékek',
-    'Logout ({username})' => 'Kijelentkezés ({username})',
+    'Choose..' => 'Válassz..',
 ];
