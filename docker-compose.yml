@@ -12,11 +12,6 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ~/.composer:/var/www/.composerhost
       - ~/.ssh:/var/www/.ssh
-    environment:
-      DB_DSN: mysql:host=db;dbname=database
-      DB_TEST_DSN: mysql:host=dbtest;dbname=database_test
-      DB_USER: user
-      DB_PASS: pass
     ports:
       - '8080:80'
     links:

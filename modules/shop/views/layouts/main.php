@@ -35,17 +35,16 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $isAdmin = \yii\helpers\ArrayHelper::getValue(Yii::$app->user, 'identity.username') === 'admin';
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => Yii::t('app', 'Categories'), 'url' => ['/shop/category/index'], 'visible' => $isAdmin],
-            ['label' => Yii::t('app', 'Products'), 'url' => ['/shop/product/index'], 'visible' => $isAdmin],
+            ['label' => Yii::t('app', 'Categories'), 'url' => ['/shop/category/index']],
+            ['label' => Yii::t('app', 'Products'), 'url' => ['/shop/product/index']],
             Yii::$app->user->isGuest ? (
-                ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
+                ['label' => Yii::t('app', 'Login'), 'url' => ['/shop/default/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
+                . Html::beginForm(['/shop/default/logout'], 'post')
                 . Html::submitButton(
                     Html::img('https://connect2.mito.hu/profile-pictures/e17568738fbeffb1ad309ef83e7c34e438336425.jpg', ['class' => 'img-circle', 'style' => 'height:18px;']) . ' ' . Yii::t('app', 'Logout ({username})', [
                         'username' => Yii::$app->user->identity->username,

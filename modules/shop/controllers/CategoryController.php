@@ -12,6 +12,7 @@ use app\modules\shop\services\category\UpdateCategoryService;
 use Yii;
 use app\modules\shop\domains\category\Category;
 use app\modules\shop\domains\category\CategorySearch;
+use yii\filters\AccessControl;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -28,6 +29,15 @@ class CategoryController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

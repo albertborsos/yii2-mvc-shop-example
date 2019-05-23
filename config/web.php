@@ -28,18 +28,18 @@ $config = [
     'modules' => [
         'shop' => [
             'user' => [
-                'identityClass' => \app\models\User::class,
+                'identityClass' => \app\modules\shop\domains\admin\Admin::class,
                 'enableAutoLogin' => true,
                 'identityCookie' => ['name' => '_shop' . $cookieSuffix, 'httpOnly' => true],
-                'loginUrl' => ['/site/login'],
+                'loginUrl' => ['/shop/default/login'],
             ],
         ],
         'frontend' => [
             'user' => [
-                'identityClass' => \app\models\User::class,
+                'identityClass' => \app\modules\frontend\domains\user\User::class,
                 'enableAutoLogin' => true,
                 'identityCookie' => ['name' => '_frontend' . $cookieSuffix, 'httpOnly' => true],
-                'loginUrl' => ['/site/login'],
+                'loginUrl' => ['/frontend/default/login'],
             ],
         ],
     ],

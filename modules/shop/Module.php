@@ -48,7 +48,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
             return;
         }
 
-        Yii::$app->user->loginUrl = ['/site/login'];
+        Yii::$app->user->loginUrl = ['/shop/default/login'];
 
         if ($this->user !== null) {
             if (!isset($this->user['class'])) {

@@ -1,5 +1,5 @@
 <?php
-
+/* @var codemix\yii2confload\Config $this */
 return [
     'id' => 'mvvshopexample',
     'basePath' => dirname(__DIR__),
@@ -12,6 +12,16 @@ return [
         '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
+        'authClientCollection' => [
+            'class' => \yii\authclient\Collection::class,
+            'clients' => [
+                'google' => [
+                    'class' => \yii\authclient\clients\Google::class,
+                    'clientId' => self::env('GOOGLE_CLIENT_ID'),
+                    'clientSecret' => self::env('GOOGLE_CLIENT_SECRET'),
+                ],
+            ],
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -33,9 +43,9 @@ return [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => getenv('DB_DSN'),
-            'username' => getenv('DB_USER'),
-            'password' => getenv('DB_PASS'),
+            'dsn' => self::env('DB_DSN'),
+            'username' => self::env('DB_USER'),
+            'password' => self::env('DB_PASS'),
             'charset' => 'utf8',
 
             // Schema cache options (for production environment)
@@ -52,8 +62,10 @@ return [
                 'action' => \yii\web\UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
             ],
             'rules' => [
-                '/' => '/frontend/default/home',
+                '/' => 'frontend/default/home',
                 '/webshop/<slug:[a-zA-Z0-9-]+>' => 'frontend/default/index',
+
+                '/admin' => 'shop/default/login',
             ],
         ],
         'i18n' => [

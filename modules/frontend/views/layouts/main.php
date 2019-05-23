@@ -41,13 +41,13 @@ AppAsset::register($this);
             ['label' => Yii::t('app', 'Home'), 'url' => ['/frontend/default/home']],
             \app\modules\frontend\helpers\NavbarHelper::productsMenuItems(),
             Yii::$app->user->isGuest ? (
-                ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
+                ['label' => Yii::t('app', 'Login'), 'url' => ['/frontend/default/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
+                . Html::beginForm(['/frontend/default/logout'], 'post')
                 . Html::submitButton(
-                    Html::img('https://connect2.mito.hu/profile-pictures/e17568738fbeffb1ad309ef83e7c34e438336425.jpg', ['class' => 'img-circle', 'style' => 'height:18px;']) . ' ' . Yii::t('app', 'Logout ({username})', [
-                        'username' => Yii::$app->user->identity->username,
+                    Html::img(Yii::$app->user->identity->picture, ['class' => 'img-circle', 'style' => 'height:18px;']) . ' ' . Yii::t('app', 'Logout ({username})', [
+                        'username' => Yii::$app->user->identity->name,
                     ]),
                     ['class' => 'btn btn-link logout']
                 )
