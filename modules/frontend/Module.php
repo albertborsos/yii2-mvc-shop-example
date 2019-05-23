@@ -1,14 +1,12 @@
 <?php
 
-namespace app\modules\shop;
+namespace app\modules\frontend;
 
 use app\modules\frontend\assets\ProductAssets;
 use Yii;
-use yii\base\Application;
-use yii\base\BootstrapInterface;
 use yii\web\User;
 
-class Module extends \yii\base\Module implements BootstrapInterface
+class Module extends \yii\base\Module
 {
     public $user;
 
@@ -16,20 +14,11 @@ class Module extends \yii\base\Module implements BootstrapInterface
     {
         parent::init();
         if (\Yii::$app instanceof \yii\console\Application) {
-            $this->controllerNamespace = 'app\modules\shop\commands';
+            $this->controllerNamespace = 'app\modules\frontend\commands';
         }
         $this->registerAssets();
         $this->setLayout();
         $this->setSessionConfig();
-    }
-
-    /**
-     * Bootstrap method to be called during application bootstrap stage.
-     * @param Application $app the application currently running
-     */
-    public function bootstrap($app)
-    {
-        Bootstrap::setConfig($app);
     }
 
     private function registerAssets()
@@ -41,14 +30,13 @@ class Module extends \yii\base\Module implements BootstrapInterface
         ProductAssets::register(\Yii::$app->view);
     }
 
-
     private function setSessionConfig()
     {
         if (!\Yii::$app instanceof \yii\web\Application) {
             return;
         }
 
-        Yii::$app->user->loginUrl = ['/site/login'];
+        Yii::$app->user->loginUrl = ['/frontend/default/login'];
 
         if ($this->user !== null) {
             if (!isset($this->user['class'])) {
@@ -64,7 +52,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
 
             foreach ($params as $param) {
                 if (!isset($this->user[$param])) {
-                    $this->user[$param] = Yii::$app->user->$param . '_admin';
+                    $this->user[$param] = Yii::$app->user->$param . '_frontend';
                 }
             }
 
@@ -74,6 +62,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
 
     public function setLayout(): void
     {
-        $this->layout = '@app/modules/shop/views/layouts/main.php';
+        $this->layout = '@app/modules/frontend/views/layouts/main.php';
     }
 }

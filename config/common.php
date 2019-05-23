@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'id' => 'mvvshopexample',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'shop'],
     'name' => 'Shop',
@@ -51,8 +52,8 @@ return [
                 'action' => \yii\web\UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
             ],
             'rules' => [
-                '/' => '/shop/default/home',
-                '/shop/<slug:[a-zA-Z0-9-]+>' => 'shop/default/index',
+                '/' => '/frontend/default/home',
+                '/webshop/<slug:[a-zA-Z0-9-]+>' => 'frontend/default/index',
             ],
         ],
         'i18n' => [
@@ -67,7 +68,8 @@ return [
         ],
     ],
     'modules' => [
-        'shop' => \app\modules\shop\Module::class,
+        'shop' => ['class' => \app\modules\shop\Module::class],
+        'frontend' => ['class' => \app\modules\frontend\Module::class],
     ],
     'params' => [
         'adminEmail' => 'admin@example.com',

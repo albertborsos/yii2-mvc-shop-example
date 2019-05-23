@@ -78,7 +78,7 @@ class ProductData extends AbstractProductData
 
     public function getUrl()
     {
-        return Url::to(['/shop/' . $this->slug]);
+        return Url::to(['/webshop/' . $this->slug]);
     }
 
     public function getDescriptionChunk()

@@ -1,12 +1,10 @@
 <?php
 
-namespace app\modules\shop\helpers;
+namespace app\modules\frontend\helpers;
 
-use app\components\LanguageSelector;
+use app\modules\frontend\components\LanguageSelector;
 use app\modules\shop\domains\category\Category;
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use yii\helpers\Url;
 
 class NavbarHelper

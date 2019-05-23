@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components;
+namespace app\modules\frontend\components;
 
 use yii\base\Application;
 use yii\base\BootstrapInterface;

@@ -13,12 +13,6 @@ $config = [
 //        'fixture' => [ // Fixture generation command line.
 //            'class' => 'yii\faker\FixtureController',
 //        ],
-        'migrate' => [
-            'class' => \yii\console\controllers\MigrateController::class,
-            'migrationPath' => [
-                '@app/modules/shop/migrations',
-            ],
-        ],
     ],
 ];
 

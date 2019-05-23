@@ -38,16 +38,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => Yii::t('app', 'Home'), 'url' => ['/shop/default/home']],
-            \app\modules\shop\helpers\NavbarHelper::productsMenuItems(),
-            [
-                'label' => Yii::t('app', 'Manage'),
-                'items' => [
-                    ['label' => Yii::t('app', 'Categories'), 'url' => ['/shop/category/index']],
-                    ['label' => Yii::t('app', 'Products'), 'url' => ['/shop/product/index']],
-                ],
-                'visible' => \yii\helpers\ArrayHelper::getValue(Yii::$app->user, 'identity.username') === 'admin',
-            ],
+            ['label' => Yii::t('app', 'Home'), 'url' => ['/frontend/default/home']],
+            \app\modules\frontend\helpers\NavbarHelper::productsMenuItems(),
             Yii::$app->user->isGuest ? (
                 ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
             ) : (
@@ -62,7 +54,7 @@ AppAsset::register($this);
                 . Html::endForm()
                 . '</li>'
             ),
-            \app\modules\shop\helpers\NavbarHelper::languageSelector(),
+            \app\modules\frontend\helpers\NavbarHelper::languageSelector(),
         ],
     ]);
     NavBar::end();

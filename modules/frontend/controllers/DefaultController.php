@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\controllers;
+namespace app\modules\frontend\controllers;
 
 use app\modules\shop\domains\category\CategoryData;
 use app\modules\shop\domains\product\Product;

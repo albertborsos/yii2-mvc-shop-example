@@ -84,6 +84,6 @@ class CategoryData extends AbstractCategoryData
 
     public function getUrl()
     {
-        return ['/shop/' . $this->slug];
+        return ['/webshop/' . $this->slug];
     }
 }

@@ -2,10 +2,13 @@
 
 $common = require __DIR__ . '/common.php';
 
+$cookieSuffix = '_' . md5($common['id']);
+
 $config = [
     'id' => 'basic',
+    'layout' => '@app/modules/frontend/views/layouts/main.php',
     'bootstrap' =>[
-        \app\components\LanguageSelector::class,
+        \app\modules\frontend\components\LanguageSelector::class,
     ],
     'components' => [
         'request' => [
@@ -20,6 +23,24 @@ $config = [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+    ],
+    'modules' => [
+        'shop' => [
+            'user' => [
+                'identityClass' => \app\models\User::class,
+                'enableAutoLogin' => true,
+                'identityCookie' => ['name' => '_shop' . $cookieSuffix, 'httpOnly' => true],
+                'loginUrl' => ['/site/login'],
+            ],
+        ],
+        'frontend' => [
+            'user' => [
+                'identityClass' => \app\models\User::class,
+                'enableAutoLogin' => true,
+                'identityCookie' => ['name' => '_frontend' . $cookieSuffix, 'httpOnly' => true],
+                'loginUrl' => ['/site/login'],
+            ],
         ],
     ],
 ];
