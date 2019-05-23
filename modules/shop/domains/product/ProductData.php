@@ -79,4 +79,13 @@ class ProductData extends AbstractProductData
     {
         return Url::to(['/shop/' . $this->slug]);
     }
+
+    public function getDescriptionChunk()
+    {
+        if (strlen($this->description) <= 120) {
+            return $this->description;
+        }
+
+        return substr($this->description, 0, 120) . '...';
+    }
 }

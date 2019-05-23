@@ -38,7 +38,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
+            ['label' => Yii::t('app', 'Home'), 'url' => ['/shop/default/home']],
             \app\modules\shop\helpers\NavbarHelper::productsMenuItems(),
             [
                 'label' => Yii::t('app', 'Manage'),
