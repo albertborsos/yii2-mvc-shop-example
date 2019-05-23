@@ -5,6 +5,8 @@ namespace app\modules\shop\controllers;
 use app\models\Language;
 use app\modules\shop\domains\product\ProductData;
 use app\modules\shop\services\product\CreateOrUpdateProductDataService;
+use app\modules\shop\services\product\CreateProductService;
+use app\modules\shop\services\product\forms\CreateProductForm;
 use app\modules\shop\services\product\forms\UpdateProductForm;
 use app\modules\shop\services\product\UpdateProductService;
 use Yii;
@@ -69,10 +71,13 @@ class ProductController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Product();
+        $model = new CreateProductForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $service = new CreateProductService($model);
+            if ($id = $service->execute()) {
+                return $this->redirect(['update', 'id' => $id]);
+            }
         }
 
         return $this->render('create', [
