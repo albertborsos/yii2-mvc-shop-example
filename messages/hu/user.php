@@ -17,15 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Categories' => 'Kategóriák',
-    'Choose..' => 'Válassz..',
-    'English' => 'Angol',
-    'Home' => 'Kezdőlap',
-    'Hungarian' => 'Magyar',
-    'Latest Products' => 'Legújabb Termékek',
-    'Login' => 'Bejelentkezés',
-    'Logout ({username})' => 'Kijelentkezés ({username})',
-    'Products' => 'Termékek',
-    'Log in with your google account' => '',
-    'Logout' => 'Kijelentkezés',
+    'Created At' => '',
+    'Created By' => '',
+    'Google ID' => '',
+    'ID' => '',
+    'Name' => '',
+    'Picture' => '',
+    'Updated At' => '',
+    'Updated By' => '',
 ];

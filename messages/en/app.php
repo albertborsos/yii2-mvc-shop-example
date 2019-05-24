@@ -23,9 +23,11 @@ return [
     'Home' => '',
     'Hungarian' => '',
     'Latest Products' => '',
+    'Log in with your google account' => '',
     'Login' => '',
+    'Logout' => '',
     'Logout ({username})' => '',
-    'Manage' => '',
     'Products' => '',
     'Invalid password' => '@@@@',
+    'Manage' => '@@@@',
 ];

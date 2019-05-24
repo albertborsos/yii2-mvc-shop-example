@@ -46,7 +46,7 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/frontend/default/logout'], 'post')
                 . Html::submitButton(
-                    Html::img(Yii::$app->user->identity->picture, ['class' => 'img-circle', 'style' => 'height:18px;']) . ' ' . Yii::t('app', 'Logout ({username})', [
+                    Html::img(Yii::$app->user->identity->picture, ['class' => 'img-circle', 'style' => 'height:18px;']) . ' ' . Yii::t('app', 'Logout', [
                         'username' => Yii::$app->user->identity->name,
                     ]),
                     ['class' => 'btn btn-link logout']
