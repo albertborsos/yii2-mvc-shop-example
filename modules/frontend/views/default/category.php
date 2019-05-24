@@ -5,6 +5,7 @@
 /* @var $productData \app\modules\shop\domains\product\ProductData */
 /* @var $productsDataProvider \yii\data\ActiveDataProvider */
 /* @var $languageCode $languageCode */
+/* @var $formatter \yii\i18n\Formatter */
 ?>
 <h1><?= $category->name ?></h1>
 
@@ -13,9 +14,10 @@
         <?= \yii\widgets\ListView::widget([
             'dataProvider' => $productsDataProvider,
             'itemOptions' => ['class' => 'col-md-4'],
-            'itemView' => function ($model, $key, $index, $widget) use ($languageCode) {
+            'itemView' => function ($model, $key, $index, $widget) use ($languageCode, $formatter) {
                 return $this->render('_product-item', [
                     'productData' => $model->data($languageCode),
+                    'formatter' => $formatter,
                 ]);
             },
             'pager' => [

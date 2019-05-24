@@ -1,9 +1,9 @@
-@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
 .col-item
 {
     border: 1px solid #E1E1E1;
     border-radius: 5px;
     background: #FFF;
+    margin-top:10px;
 }
 .col-item .photo img
 {

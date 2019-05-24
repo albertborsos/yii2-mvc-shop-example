@@ -64,6 +64,7 @@ return [
             'rules' => [
                 '/' => 'frontend/default/home',
                 '/webshop/<slug:[a-zA-Z0-9-]+>' => 'frontend/default/index',
+                '/webshop' => 'frontend/default/index',
 
                 '/admin' => 'shop/default/login',
             ],
@@ -77,6 +78,12 @@ return [
                     'sourceLanguage' => 'en',
                 ],
             ],
+        ],
+        'formatter' =>[
+            'class' => \yii\i18n\Formatter::class,
+            'currencyCode' => 'HUF',
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ' ',
         ],
     ],
     'modules' => [

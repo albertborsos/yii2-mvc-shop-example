@@ -27,7 +27,7 @@ class Category extends AbstractCategory
     /**
      * @param $languageCode
      * @param bool $throwException
-     * @return Category|array|null|\yii\db\ActiveRecord
+     * @return CategoryData|array|null|\yii\db\ActiveRecord
      * @throws Exception
      */
     public function data($languageCode, $throwException = true)

@@ -4,6 +4,7 @@ namespace app\modules\frontend\controllers;
 
 use app\modules\frontend\services\AuthUserService;
 use app\modules\frontend\services\login\forms\LoginForm;
+use app\modules\shop\domains\category\Category;
 use app\modules\shop\domains\category\CategoryData;
 use app\modules\shop\domains\product\Product;
 use app\modules\shop\domains\product\ProductData;
@@ -60,8 +61,12 @@ class DefaultController extends Controller
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionIndex($slug)
+    public function actionIndex($slug = null)
     {
+        if (empty($slug)) {
+            return $this->actionHomeWebshop();
+        }
+
         $category = CategoryData::findOne(['slug' => $slug, 'language_code' => \Yii::$app->language]);
 
         if ($category) {
@@ -79,15 +84,24 @@ class DefaultController extends Controller
 
     public function actionHome()
     {
+        $this->view->title = Yii::$app->name;
+
         return $this->render('home', [
             'latestProducts' => Product::find()->orderBy(['id' => SORT_DESC])->limit(3)->all(),
+            'formatter' => Yii::$app->formatter,
             'languageCode' => \Yii::$app->language,
         ]);
     }
 
     private function actionCategory(CategoryData $model)
     {
+        $this->view->title = $model->name;
+
+        $this->view->params['breadcrumbs'][] = ['label' => Yii::t('shop/product', 'Products'), 'url' => ['/webshop']];
+        $this->view->params['breadcrumbs'][] = $model->name;
+
         return $this->render('category', [
+            'formatter' => Yii::$app->formatter,
             'category' => $model,
             'languageCode' => \Yii::$app->language,
             'productsDataProvider' => new ActiveDataProvider([
@@ -101,9 +115,15 @@ class DefaultController extends Controller
 
     private function actionProduct(ProductData $model)
     {
+        $this->view->title = $model->name;
+
+        $this->view->params['breadcrumbs'][] = ['label' => Yii::t('shop/product', 'Products'), 'url' => ['/webshop']];
+        $this->view->params['breadcrumbs'][] = ['label' => $model->product->category->data($model->language_code)->name, 'url' => $model->product->category->data($model->language_code)->getUrl()];
+        $this->view->params['breadcrumbs'][] = $model->name;
+
         return $this->render('product', [
+            'formatter' => Yii::$app->formatter,
             'product' => $model,
-            'languageCode' => \Yii::$app->language,
         ]);
     }
 
@@ -126,5 +146,17 @@ class DefaultController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    private function actionHomeWebshop()
+    {
+        $this->view->title = Yii::t('shop/product', 'Products');
+
+        $this->view->params['breadcrumbs'][] = ['label' => Yii::t('shop/product', 'Products'), 'url' => ['/webshop']];
+
+        return $this->render('home_webshop', [
+            'categories' => Category::find()->orderBy(['name' => SORT_ASC])->all(),
+            'languageCode' => Yii::$app->language,
+        ]);
     }
 }

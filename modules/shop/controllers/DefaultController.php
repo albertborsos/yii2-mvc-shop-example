@@ -2,6 +2,7 @@
 
 namespace app\modules\shop\controllers;
 
+use app\modules\shop\domains\category\Category;
 use app\modules\shop\services\login\forms\LoginForm;
 use app\modules\shop\services\login\LoginService;
 use Yii;
@@ -18,10 +19,10 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'index'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -36,6 +37,17 @@ class DefaultController extends Controller
         ];
     }
 
+    public function actionIndex()
+    {
+        $this->view->title = Yii::t('shop/product', 'Products');
+
+        $this->view->params['breadcrumbs'][] = ['label' => Yii::t('shop/category', 'Categories'), 'url' => ['/webshop']];
+
+        return $this->render('home', [
+            'categories' => Category::find()->orderBy(['name' => SORT_ASC])->all(),
+        ]);
+    }
+
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -46,7 +58,7 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $service = new LoginService($model);
             if ($service->execute()) {
-                return $this->redirect(['/shop/product/index']);
+                return $this->redirect(['/shop/default/index']);
             }
         }
 
@@ -65,6 +77,6 @@ class DefaultController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(['/shop/default/index']);
     }
 }

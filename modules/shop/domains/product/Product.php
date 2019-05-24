@@ -21,7 +21,7 @@ class Product extends AbstractProduct
     /**
      * @param $languageCode
      * @param bool $throwException
-     * @return Product|array|null|\yii\db\ActiveRecord
+     * @return ProductData|array|null|\yii\db\ActiveRecord
      * @throws Exception
      */
     public function data($languageCode, $throwException = true)

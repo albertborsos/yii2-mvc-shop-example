@@ -2,6 +2,7 @@
 /* @var $this \yii\web\View */
 /* @var $latestProducts \app\modules\shop\domains\product\Product[]|array */
 /* @var $languageCode $languageCode */
+/* @var $formatter \yii\i18n\Formatter */
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -18,6 +19,7 @@
                         <div class="col-md-4">
                             <?= $this->render('_product-item', [
                                 'productData' => $productData,
+                                'formatter' => $formatter,
                             ]) ?>
                         </div>
                     <?php endforeach; ?>

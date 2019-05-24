@@ -2,6 +2,8 @@
 
 namespace app\modules\shop\domains\product;
 
+use app\modules\shop\domains\category\Category;
+use app\modules\shop\domains\category\CategoryData;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -10,14 +12,18 @@ use yii\data\ActiveDataProvider;
  */
 class ProductSearch extends Product
 {
+    use ProductAttributeLabelsTrait;
+
+    public $category;
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'category_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['name', 'category'], 'safe'],
         ];
     }
 
@@ -41,11 +47,18 @@ class ProductSearch extends Product
     {
         $query = Product::find();
 
+        $query->joinWith(['category', 'category.categoryDatas']);
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['category'] = [
+            'asc' => [Category::tableName() . '.name' => SORT_ASC],
+            'desc' => [Category::tableName() . '.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -58,7 +71,6 @@ class ProductSearch extends Product
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
             'created_at' => $this->created_at,
             'created_by' => $this->created_by,
             'updated_at' => $this->updated_at,
@@ -66,6 +78,11 @@ class ProductSearch extends Product
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere([
+            'OR',
+            ['like', Category::tableName() . '.name', $this->category],
+            ['like', CategoryData::tableName() . '.name', $this->category],
+        ]);
 
         return $dataProvider;
     }

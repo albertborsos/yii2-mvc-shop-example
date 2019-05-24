@@ -26,13 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'category_id',
+            [
+                'attribute' => 'category',
+                'value' => function ($model) {
+                    /** @var \app\modules\shop\domains\product\Product $model */
+                    $names = array_unique(array_merge([$model->category->name], \yii\helpers\ArrayHelper::getColumn($model->category->categoryDatas, 'name')));
+
+                    return implode(' / ', $names);
+                },
+            ],
             'name',
-            'created_at',
-            'created_by',
-            //'updated_at',
-            //'updated_by',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

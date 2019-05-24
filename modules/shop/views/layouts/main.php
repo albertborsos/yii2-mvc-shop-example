@@ -30,7 +30,7 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => '/shop/default/index',
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -62,6 +62,10 @@ AppAsset::register($this);
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            'homeLink' => [
+                'label' => Yii::t('yii', 'Home'),
+                'url' => ['/shop/default/index'],
+            ],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
@@ -70,7 +74,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; My Company <?= date('Y') ?> | <?= Html::a(Yii::t('yii', 'Home'), ['/'])?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

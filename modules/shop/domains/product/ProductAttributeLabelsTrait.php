@@ -14,7 +14,7 @@ trait ProductAttributeLabelsTrait
     {
         return [
             'id' => Yii::t('shop/product', 'ID'),
-            'category_id' => Yii::t('shop/product', 'Category ID'),
+            'category_id' => Yii::t('shop/product', 'Category'),
             'name' => Yii::t('shop/product', 'Name'),
             'price' => Yii::t('shop/product', 'Price'),
             'created_at' => Yii::t('shop/product', 'Created At'),

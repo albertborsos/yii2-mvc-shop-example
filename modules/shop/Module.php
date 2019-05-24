@@ -12,6 +12,13 @@ class Module extends \yii\base\Module implements BootstrapInterface
 {
     public $user;
 
+    public function beforeAction($action)
+    {
+        Yii::$app->sourceLanguage = 'en';
+        Yii::$app->language = 'en';
+        return parent::beforeAction($action);
+    }
+
     public function init()
     {
         parent::init();
