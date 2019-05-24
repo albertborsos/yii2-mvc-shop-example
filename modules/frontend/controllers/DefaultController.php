@@ -48,6 +48,9 @@ class DefaultController extends Controller
                 'class' => 'yii\authclient\AuthAction',
                 'successCallback' => [$this, 'onAuthSuccess'],
             ],
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
         ];
     }
 
@@ -123,7 +126,7 @@ class DefaultController extends Controller
 
         return $this->render('product', [
             'formatter' => Yii::$app->formatter,
-            'product' => $model,
+            'productData' => $model,
         ]);
     }
 

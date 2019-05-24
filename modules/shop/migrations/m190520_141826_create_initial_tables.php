@@ -13,9 +13,12 @@ class m190520_141826_create_initial_tables extends Migration
     const SHOP_PRODUCT = '{{%shop_product}}';
     const SHOP_PRODUCT_DATA = '{{%shop_product_data}}';
 
+    const SHOP_PRODUCT_IMAGE = '{{%shop_product_image}}';
+
     const FK_CATEGORY_DATA_CATEGORY_ID_CATEGORY_ID = 'fk_category_data__category_id__category_id';
     const FK_PRODUCT_CATEGORY_ID_CATEGORY_ID = 'fk_product__category_id__category_id';
     const FK_PRODUCT_DATA_PRODUCT_ID_PRODUCT_ID = 'fk_product_data__product_id__product_id';
+    const FK_PRODUCT_IMAGE_PRODUCT_ID_PRODUCT_ID = 'fk_product_image__product_id__product_id';
 
     public function safeUp()
     {
@@ -70,6 +73,18 @@ class m190520_141826_create_initial_tables extends Migration
         ]);
 
         $this->addForeignKey(self::FK_PRODUCT_DATA_PRODUCT_ID_PRODUCT_ID, self::SHOP_PRODUCT_DATA, 'product_id', self::SHOP_PRODUCT, 'id', 'CASCADE', 'CASCADE');
+
+        $this->createTable(self::SHOP_PRODUCT_IMAGE, [
+            'id' => $this->primaryKey(),
+            'product_id' => $this->integer()->notNull(),
+            'filename' => $this->string()->notNull(),
+            'title' => $this->string(),
+            'created_at' => $this->bigInteger(),
+            'created_by' => $this->integer(),
+            'updated_at' => $this->bigInteger(),
+            'updated_by' => $this->integer(),
+        ]);
+        $this->addForeignKey(self::FK_PRODUCT_IMAGE_PRODUCT_ID_PRODUCT_ID, self::SHOP_PRODUCT_IMAGE, 'product_id', self::SHOP_PRODUCT, 'id');
     }
 
     /**
@@ -77,6 +92,9 @@ class m190520_141826_create_initial_tables extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey(self::FK_PRODUCT_IMAGE_PRODUCT_ID_PRODUCT_ID, self::SHOP_PRODUCT_IMAGE);
+        $this->dropTable(self::SHOP_PRODUCT_IMAGE);
+
         $this->dropForeignKey(self::FK_PRODUCT_DATA_PRODUCT_ID_PRODUCT_ID, self::SHOP_PRODUCT_DATA);
         $this->dropTable(self::SHOP_PRODUCT_DATA);
 

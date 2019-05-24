@@ -37,6 +37,18 @@ class DefaultController extends Controller
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $this->view->title = Yii::t('shop/product', 'Products');

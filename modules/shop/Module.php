@@ -6,6 +6,7 @@ use app\modules\frontend\assets\ProductAssets;
 use Yii;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
+use yii\web\ErrorHandler;
 use yii\web\User;
 
 class Module extends \yii\base\Module implements BootstrapInterface
@@ -28,6 +29,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
         $this->registerAssets();
         $this->setLayout();
         $this->setSessionConfig();
+        $this->setErrorHandler();
     }
 
     /**
@@ -82,5 +84,13 @@ class Module extends \yii\base\Module implements BootstrapInterface
     public function setLayout(): void
     {
         $this->layout = '@app/modules/shop/views/layouts/main.php';
+    }
+
+    private function setErrorHandler()
+    {
+        if (!\Yii::$app instanceof \yii\web\Application) {
+            return;
+        }
+        Yii::$app->errorHandler->errorAction = '/shop/default/error';
     }
 }

@@ -4,6 +4,8 @@ namespace app\modules\frontend;
 
 use app\modules\frontend\assets\ProductAssets;
 use Yii;
+use yii\web\Application;
+use yii\web\ErrorHandler;
 use yii\web\User;
 
 class Module extends \yii\base\Module
@@ -19,6 +21,7 @@ class Module extends \yii\base\Module
         $this->registerAssets();
         $this->setLayout();
         $this->setSessionConfig();
+        $this->setErrorHandler();
     }
 
     private function registerAssets()
@@ -63,5 +66,13 @@ class Module extends \yii\base\Module
     public function setLayout(): void
     {
         $this->layout = '@app/modules/frontend/views/layouts/main.php';
+    }
+
+    private function setErrorHandler()
+    {
+        if (!\Yii::$app instanceof \yii\web\Application) {
+            return;
+        }
+        Yii::$app->errorHandler->errorAction = '/frontend/default/error';
     }
 }

@@ -4,7 +4,7 @@
 ?>
 <div class="col-item">
     <div class="photo">
-        <img src="http://placehold.it/350x260" class="img-responsive" alt="a">
+        <img src="<?= $productData->product->getImageUrl() ?>" class="img-responsive" alt="a">
     </div>
     <div class="info">
         <div class="row">

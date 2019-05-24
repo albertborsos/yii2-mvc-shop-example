@@ -6,16 +6,23 @@ use app\modules\shop\components\validators\HtmlPurifierFilter;
 use app\modules\shop\domains\category\Category;
 use app\modules\shop\domains\product\ProductAttributeLabelsTrait;
 use app\modules\shop\domains\product\Product;
+use app\modules\shop\traits\SingleImageUploadFormTrait;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
+use yii\web\UploadedFile;
 
 class UpdateProductForm extends Model
 {
     use ProductAttributeLabelsTrait;
+    use SingleImageUploadFormTrait;
 
     public $id;
     public $category_id;
     public $name;
     public $price;
+
+    /** @var Product  */
+    private $product;
 
     public function __construct(Product $model, array $config = [])
     {
@@ -24,6 +31,19 @@ class UpdateProductForm extends Model
         $this->category_id = $model->category_id;
         $this->name = $model->name;
         $this->price = $model->price;
+
+        $this->product = $model;
+        $this->image_id = ArrayHelper::getValue($model->productImages, '0.id');
+    }
+
+    public function load($data, $formName = null)
+    {
+        if (parent::load($data, $formName)) {
+            $this->imageFile = $this->imageFile ?: UploadedFile::getInstance($this, 'imageFile');
+            return true;
+        }
+
+        return false;
     }
 
     public function rules()
@@ -39,6 +59,8 @@ class UpdateProductForm extends Model
             [['name'], 'unique', 'targetClass' => Product::class, 'targetAttribute' => 'name', 'filter' => ['NOT', ['id' => $this->id]]],
 
             [['price'], 'number', 'min' => 0],
+
+            [['imageFile'], 'file', 'maxSize' => 3 * 1024 * 1024, 'extensions' => 'png, jpg, jpeg', 'skipOnEmpty' => true],
         ];
     }
 

@@ -10,6 +10,8 @@ class Product extends AbstractProduct
 {
     use ProductAttributeLabelsTrait;
 
+    const PLACEHOLDER_IMAGE = 'http://placehold.it/350x260';
+
     public function behaviors()
     {
         return [
@@ -40,5 +42,17 @@ class Product extends AbstractProduct
             '{name}' => $this->name,
             '{languageCode}' => $languageCode,
         ]));
+    }
+
+    public function getImageUrl()
+    {
+        /** @var ProductImage $image */
+        $image = $this->getProductImages()->orderBy(['id' =>SORT_DESC])->one();
+
+        if (empty($image)) {
+            return self::PLACEHOLDER_IMAGE;
+        }
+
+        return $image->getUrl();
     }
 }

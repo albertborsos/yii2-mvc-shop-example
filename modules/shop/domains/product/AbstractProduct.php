@@ -18,7 +18,8 @@ use Yii;
  * @property int $updated_by
  *
  * @property Category $category
- * @property ProductData[] $shopProductDatas
+ * @property ProductData[] $productDatas
+ * @property ProductImage[] $productImages
  */
 abstract class AbstractProduct extends \yii\db\ActiveRecord
 {
@@ -58,6 +59,14 @@ abstract class AbstractProduct extends \yii\db\ActiveRecord
     public function getProductDatas()
     {
         return $this->hasMany(ProductData::className(), ['product_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductImages()
+    {
+        return $this->hasMany(ProductImage::className(), ['product_id' => 'id']);
     }
 
     /**
