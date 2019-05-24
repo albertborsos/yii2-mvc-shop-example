@@ -40,7 +40,7 @@ return [
     'sourceMessageTable' => '{{%source_message}}',
     'messageTable' => '{{%message}}',
     'catalog' => 'messages',
-    'ignoreCategories' => [],
+    'ignoreCategories' => ['yii'],
     'phpFileHeader' => '',
     'phpDocBlock' => null,
 ];

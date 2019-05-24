@@ -18,7 +18,7 @@
  */
 return [
     'Are you sure you want to delete this item?' => '',
-    'Category ID' => '',
+    'Category' => '',
     'Create Product' => '',
     'Created At' => '',
     'Created By' => '',
@@ -35,4 +35,5 @@ return [
     'Update Product: {name}' => '',
     'Updated At' => '',
     'Updated By' => '',
+    'Category ID' => '@@@@',
 ];

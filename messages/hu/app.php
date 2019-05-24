@@ -24,8 +24,9 @@ return [
     'Hungarian' => 'Magyar',
     'Latest Products' => 'Legújabb Termékek',
     'Login' => 'Bejelentkezés',
+    'Logout' => 'Kijelentkezés',
     'Logout ({username})' => 'Kijelentkezés ({username})',
     'Products' => 'Termékek',
-    'Log in with your google account' => '',
-    'Logout' => 'Kijelentkezés',
+    'Admin' => '',
+    'Log in with your google account' => 'Jelentkezz be Google fiókoddal',
 ];
