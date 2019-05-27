@@ -38,21 +38,23 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => Yii::t('app', 'Home'), 'url' => ['/frontend/default/home']],
+            \app\modules\frontend\helpers\NavbarHelper::productsMenuItems(),
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => Yii::t('app', 'Login'), 'url' => ['/frontend/default/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
+                . Html::beginForm(['/frontend/default/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    Html::img(Yii::$app->user->identity->picture, ['class' => 'img-circle', 'style' => 'height:18px;']) . ' ' . Yii::t('app', 'Logout', [
+                        'username' => Yii::$app->user->identity->name,
+                    ]),
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+            ),
+            \app\modules\frontend\helpers\NavbarHelper::languageSelector(),
         ],
     ]);
     NavBar::end();
@@ -69,7 +71,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; My Company <?= date('Y') ?> | <?= Html::a(Yii::t('app', 'Admin'), ['/shop/default/index'])?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

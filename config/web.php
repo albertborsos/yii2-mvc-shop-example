@@ -1,58 +1,48 @@
 <?php
 
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$common = require __DIR__ . '/common.php';
+
+$cookieSuffix = '_' . md5($common['id']);
 
 $config = [
     'id' => 'basic',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
-    'aliases' => [
-        '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+    'layout' => '@app/modules/frontend/views/layouts/main.php',
+    'bootstrap' =>[
+        \app\modules\frontend\components\LanguageSelector::class,
     ],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '',
-        ],
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'cookieValidationKey' => 'rXVaWYxMOJyzDm8xNAyotFsGxZDT5WEk',
+            'parsers' => [
+                'application/json' => \yii\web\JsonParser::class,
+            ],
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => \app\models\User::class,
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-        'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
     ],
-    'params' => $params,
+    'modules' => [
+        'shop' => [
+            'user' => [
+                'identityClass' => \app\modules\shop\domains\admin\Admin::class,
+                'enableAutoLogin' => true,
+                'identityCookie' => ['name' => '_shop' . $cookieSuffix, 'httpOnly' => true],
+                'loginUrl' => ['/shop/default/login'],
+            ],
+        ],
+        'frontend' => [
+            'user' => [
+                'identityClass' => \app\modules\frontend\domains\user\User::class,
+                'enableAutoLogin' => true,
+                'identityCookie' => ['name' => '_frontend' . $cookieSuffix, 'httpOnly' => true],
+                'loginUrl' => ['/frontend/default/login'],
+            ],
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
@@ -61,15 +51,15 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 }
 
-return $config;
+return \yii\helpers\ArrayHelper::merge($common, $config);
