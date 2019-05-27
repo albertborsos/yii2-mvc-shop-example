@@ -17,16 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Admin' => '',
-    'Categories' => '',
-    'Choose..' => '',
-    'English' => '',
-    'Home' => '',
-    'Hungarian' => '',
-    'Latest Products' => '',
-    'Log in with your google account' => '',
-    'Login' => '',
-    'Logout' => '',
-    'Logout ({username})' => '',
-    'Products' => '',
+    'Created At' => '',
+    'Created By' => '',
+    'Filename' => '',
+    'ID' => '',
+    'Product ID' => '',
+    'Title' => '',
+    'Updated At' => '',
+    'Updated By' => '',
 ];

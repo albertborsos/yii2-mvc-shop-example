@@ -35,5 +35,4 @@ return [
     'The requested page does not exist.' => '',
     'Updated At' => '',
     'Updated By' => '',
-    'Category ID' => '@@Kategória@@',
 ];

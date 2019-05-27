@@ -35,5 +35,4 @@ return [
     'Update Product: {name}' => '',
     'Updated At' => '',
     'Updated By' => '',
-    'Category ID' => '@@@@',
 ];
