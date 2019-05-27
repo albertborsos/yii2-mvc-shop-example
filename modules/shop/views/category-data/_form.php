@@ -13,10 +13,10 @@ use yii\widgets\ActiveForm;
     <div class="col-md-12">
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'class' => 'slug-source form-control']) ?>
 
         <?php if ($model->hasProperty('slug')): ?>
-            <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'slug')->textInput(['maxlength' => true, 'class' => 'slug-result form-control']) ?>
         <?php endif; ?>
 
         <?= $form->field($model, 'description')->textarea() ?>

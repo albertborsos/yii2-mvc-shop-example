@@ -3,6 +3,7 @@
 namespace app\modules\shop\controllers;
 
 use app\models\Language;
+use app\modules\shop\assets\SlugHandlerAsset;
 use app\modules\shop\domains\category\CategoryData;
 use app\modules\shop\services\category\CreateCategoryService;
 use app\modules\shop\services\category\forms\CreateCategoryForm;
@@ -129,6 +130,8 @@ class CategoryController extends Controller
                 return $this->redirect(['update', 'id' => $id, 'languageCode' => $dataForm->language_code]);
             }
         }
+
+        SlugHandlerAsset::register($this->view);
 
         return $this->render('update', [
             'model' => $form,

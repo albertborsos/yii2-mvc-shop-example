@@ -2,6 +2,7 @@
 
 namespace app\modules\shop\services\category\forms;
 
+use app\modules\shop\assets\SlugHandlerAsset;
 use app\modules\shop\components\validators\HtmlPurifierFilter;
 use app\modules\shop\domains\category\CategoryAttributeLabelsTrait;
 use app\modules\shop\domains\category\Category;

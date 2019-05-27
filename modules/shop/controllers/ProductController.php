@@ -3,6 +3,7 @@
 namespace app\modules\shop\controllers;
 
 use app\models\Language;
+use app\modules\shop\assets\SlugHandlerAsset;
 use app\modules\shop\domains\product\ProductData;
 use app\modules\shop\services\product\CreateOrUpdateProductDataService;
 use app\modules\shop\services\product\CreateProductService;
@@ -125,6 +126,8 @@ class ProductController extends Controller
                 return $this->redirect(['update', 'id' => $id, 'languageCode' => $dataForm->language_code]);
             }
         }
+
+        SlugHandlerAsset::register($this->view);
 
         return $this->render('update', [
             'model' => $form,
